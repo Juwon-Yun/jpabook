@@ -1,5 +1,8 @@
 package jpabook.domain;
 
+import jpabook.Order;
+import jpabook.OrderItem;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -13,6 +16,16 @@ public class JpaMain {
 
 		tx.begin();
 		try {
+			Order order = new Order();
+			em.persist(order);
+			
+			// 굳이 양방향을 만든다면 (조회, JPQL을 편하게 쓰려면 만들수도 있다)
+			// order.addOrderItem(new OrderItem());
+			
+			OrderItem orderItem = new OrderItem();
+			orderItem.setOrder(order);
+
+			em.persist(orderItem);
 
 			tx.commit();
 		} catch (Exception e) {

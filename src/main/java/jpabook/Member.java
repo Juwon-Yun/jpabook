@@ -1,6 +1,8 @@
 package jpabook;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -12,6 +14,18 @@ public class Member {
 	private String name;
 	private String city;
 	private String zipcode;
+
+	// 만약에 양방향 관계를 가져가고싶은 경우
+	@OneToMany(mappedBy = "member")
+	private List<Order> oders = new ArrayList<>();
+
+	public List<Order> getOders() {
+		return oders;
+	}
+
+	public void setOders(List<Order> oders) {
+		this.oders = oders;
+	}
 
 	public Long getId() {
 		return id;
