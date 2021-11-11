@@ -29,6 +29,10 @@ public class Order {
 	@JoinColumn(name = "MEMBER_ID")
 	private Member member;
 
+	@OneToOne
+	@JoinColumn(name = "Delivery_ID")
+	private Delivery delivery;
+
 	private LocalDateTime orderDate;
 
 	@Enumerated(EnumType.STRING)
