@@ -1,5 +1,6 @@
 package jpabook.domain;
 
+import jpabook.Book;
 import jpabook.Order;
 import jpabook.OrderItem;
 
@@ -36,6 +37,8 @@ import javax.persistence.Persistence;
       - cascade 영속성 전이 기능을 사용한다.
       - targetEntity 연관된 엔티티의 타입 정보를 설정한다. 거의 사용하지 않고, 컬렉션의 제네틱으로 타입 정보를 알 수 있다.
 
+	h2 sql => DROP ALL OBJECTS 모든 테이블 DROP
+
  */
 public class JpaMain {
 	public static void main(String[] args) {
@@ -45,16 +48,21 @@ public class JpaMain {
 
 		tx.begin();
 		try {
-			Order order = new Order();
-			em.persist(order);
-			
-			// 굳이 양방향을 만든다면 (조회, JPQL을 편하게 쓰려면 만들수도 있다)
-			// order.addOrderItem(new OrderItem());
-			
-			OrderItem orderItem = new OrderItem();
-			orderItem.setOrder(order);
+//			Order order = new Order();
+//			em.persist(order);
+//
+//			// 굳이 양방향을 만든다면 (조회, JPQL을 편하게 쓰려면 만들수도 있다)
+//			// order.addOrderItem(new OrderItem());
+//
+//			OrderItem orderItem = new OrderItem();
+//			orderItem.setOrder(order);
+//
+//			em.persist(orderItem);
 
-			em.persist(orderItem);
+			Book book = new Book();
+			book.setName("JPA_basic");
+			book.setAuthor("윤주원2");
+			em.persist(book);
 
 			tx.commit();
 		} catch (Exception e) {

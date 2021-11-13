@@ -3,9 +3,10 @@ package jpabook;
 import javax.persistence.*;
 
 @Entity
-public class Delivery {
+public class Delivery extends BaseEntity{
 
 	@Id @GeneratedValue
+	@Column(name = "Delivery_ID")
 	private Long id;
 
 	private String city;
@@ -14,6 +15,6 @@ public class Delivery {
 	private DeliveryStatus status;
 	
 	// 일대일 양방향
-	@OneToOne(mappedBy = "Delivery_ID")
+	@OneToOne(mappedBy = "delivery")
 	private Order order;
 }
