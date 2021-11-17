@@ -38,6 +38,14 @@ import javax.persistence.Persistence;
       - targetEntity 연관된 엔티티의 타입 정보를 설정한다. 거의 사용하지 않고, 컬렉션의 제네틱으로 타입 정보를 알 수 있다.
 
 	h2 sql => DROP ALL OBJECTS 모든 테이블 DROP
+	
+	실전 예제 5
+	* 글로벌 페치 전략 설정
+		- 모든 연관관계를 지연 로딩으로
+		- @ManyToOne, @OneToOne은 기본이 즉시 로딩이므로 지연로딩으로 변경
+	* 영속성 전이 설정
+		- Order => Delivery를 영속성 전이 ALL 설정
+		- Order => OrderItem을 영속성 전이 ALL 설정
 
  */
 public class JpaMain {
@@ -63,6 +71,8 @@ public class JpaMain {
 			book.setName("JPA_basic");
 			book.setAuthor("윤주원2");
 			em.persist(book);
+
+
 
 			tx.commit();
 		} catch (Exception e) {

@@ -2,6 +2,8 @@ package jpabook;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 public class OrderItem extends BaseEntity{
 	@Id
@@ -12,14 +14,14 @@ public class OrderItem extends BaseEntity{
 //	@Column(name = "ORDER_ID")
 //	private long orderId;
 
-	@ManyToOne
+	@ManyToOne(fetch = LAZY)
 	@JoinColumn(name = "ORDER_ID")
 	private Order order;
 
 //	@Column(name = "ITEM_ID")
 //	private long itemId;
 
-	@ManyToOne
+	@ManyToOne(fetch = LAZY)
 	@JoinColumn(name = "ITEM_ID")
 	private Item item;
 
